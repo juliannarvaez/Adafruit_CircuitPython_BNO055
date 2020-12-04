@@ -13,7 +13,7 @@
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
         <style>
             body {
-              padding-top: 50px;
+	      padding-top: 50px;
               padding-bottom: 20px;
             }
         </style>
@@ -27,35 +27,24 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-      <div class="container">
+      <div class="container-fluid">
         <div class="row">
-          <div class="col-sm-12">
-            <h1 class="text-center">Adafruit BNO055 Absolute Orientation Sensor Demo</h1>
-            <h3 id="connecting">Connecting...</h3>
-            <div class="col-sm-12" id="renderer">
+          <div class="col-md-12">
+            <h1 class="text-center">Cleveland Museum of Art 3D Model Interactive Viewer</h1>
+            <h3 id="connecting">Connecting...</h3>	    
+            <div class="col-md-12" id="renderer">
             </div>
           </div>
         </div>
         <div class="row" id="controls">
-          <div class="col-sm-4">
-            <h3>Orientation (degrees):</h3>
-            <h4>Heading = <span id="heading">0</span></h4>
-            <h4>Roll = <span id="roll">0</span></h4>
-            <h4>Pitch = <span id="pitch">0</span></h4>
-          </div>
-          <div class="col-sm-4">
-            <h3>Calibration:</h3>
-            <h4>(0=uncalibrated, 3=fully calibrated)</h4>
-            <h4>System = <span id="calSys">0</span></h4>
-            <h4>Gyro = <span id="calGyro">0</span></h4>
-            <h4>Accelerometer = <span id="calAccel">0</span></h4>
-            <h4>Magnetometer = <span id="calMag">0</span></h4>
-          </div>
-          <div class="col-sm-4">
-            <h3>Actions:</h3>
+          <div class="col-md-9">
+	    <h3>Literature:</h3>
+	    <p style="font-size:20px;"class="text-left">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<p>
+	  </div>
+	  <div class="col-md-3">
+            <h3>Model:</h3>
             <form>
               <div class="form-group">
-                <label for="model">Model:
                 <select class="form-control" id="model">
                 </select>
               </div>
@@ -84,8 +73,8 @@
       $(document).ready(function() {
         // Configuration
         // Set size of the WebGL renderer scene.
-        var sceneWidth = 640;
-        var sceneHeight = 480;
+        var sceneWidth = 1000;
+        var sceneHeight = 500;
         // Define list of 3D models.  Each item should have a name property that
         // will be rendered in the drop down, and a load function that is called
         // with the model instance and should add a model property with a Three.js
@@ -218,6 +207,34 @@
         orientation = new THREE.Group();
         offset.add(orientation);
         scene.add(offset);
+
+	function getWidth() {
+  		if (self.innerWidth) {
+    			return self.innerWidth;
+  		}
+
+  		if (document.documentElement && document.documentElement.clientWidth) {
+  			return document.documentElement.clientWidth;
+  		}
+
+		if (document.body) {
+    			return document.body.clientWidth;
+        	}
+	}	
+
+	function getHeight() {
+  		if (self.innerHeight) {
+    			return self.innerHeight;
+  		}
+
+  		if (document.documentElement && document.documentElement.clientHeight) {
+    			return document.documentElement.clientHeight;
+  		}
+
+  		if (document.body) {
+    			return document.body.clientHeight;
+  		}
+	}
 
         // Main rendering function.
         function render() {
